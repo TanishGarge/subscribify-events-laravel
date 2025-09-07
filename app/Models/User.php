@@ -53,6 +53,25 @@ class User extends Authenticatable
         return $this->role === 'Admin';
     }
 
+    public function hasSubscription() : bool {
+        if($this->subscription == null ) {
+            return false;
+        }
+        return true;
+    }
+
+    public function hasActiveSubscription() : bool {
+        if($this->hasSubscription()) {
+            $status = $this->subscription->status;
+            if($status == 'cancelled') {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /* Relationship Method */
     public function subscription() : HasOne {
         return $this->hasOne(Subscription::class);
