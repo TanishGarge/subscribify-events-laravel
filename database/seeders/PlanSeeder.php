@@ -17,7 +17,8 @@ class PlanSeeder extends Seeder
             'name' => 'Basic'
         ]);
         Plan::factory()->create([
-            'name' => 'Pro'
+            'name' => 'Pro',
+            'price_cents' => 11000
         ]);
     }
 }
